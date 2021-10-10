@@ -1,0 +1,118 @@
+﻿<Window x:Class="WPF_StudentsManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_StudentsManager"
+        mc:Ignorable="d"
+        d:DesignWidth ="600"
+        d:DesignHeight ="400"
+    Title="Students Manager">
+    <Window.Resources>
+        <!--Size of the Window-->
+        <!--d:DesignWidth ="600"
+        d:DesignHeight ="600"
+        Other way: Title="MainWindow" Height="10" Width="100"-->
+        
+        <!--Add icon to Images folder (new folder) in solution, then define it here with path source, then use it for image source 
+        (be sure that Images and it's content in included in the project, if not then rgt click and "Include In Project") e.g. 
+        Image Source="{StaticResource addIcon}"
+        Other option: Add logo.png to new Images folder in project, then:
+        Image Source="Images/logo.png" -->
+        <BitmapImage x:Key="logo"
+                 UriSource="pack://application:,,,/Images/logo.png"/>
+        <BitmapImage x:Key="forward"
+                 UriSource="pack://application:,,,/Images/forward.png"/>
+        <BitmapImage x:Key="addStudent"
+                 UriSource="pack://application:,,,/Images/add-user.png"/>
+        <BitmapImage x:Key="deleteStudent"
+                 UriSource="pack://application:,,,/Images/delete-user.png"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <!--2 columns-->
+            <ColumnDefinition Width = "Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <!--2 rows-->
+            <RowDefinition Height = "Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <!-- Defining row/ column size (* - it will grow or shrink when the grid is resized):
+        1.
+        <RowDefinition Height = "3*"/> then size is 75% - 3x more than row nr 2
+        <RowDefinition Height = "*"/> then size is 25% - takes the rest of window = 25%
+        2.
+        <RowDefinition Height = "*"/> then size is 50% - the same as row nr 2
+        <RowDefinition Height = "*"/> then size is 50% 
+        3.
+        <RowDefinition Height = "100"/> then size 100 pixels
+        <RowDefinition Height = "*"/> then size takes the rest of the window 
+        4.
+        <RowDefinition Height = "100"/> then size 100 pixels
+        <RowDefinition Height = "*"/> then size takes the rest of the window/2 (rows nr 2 and 3 are equal)
+        <RowDefinition Height = "*"/> then size takes the rest of the window/2
+        
+        Element with Grid.Row = "2" is placed in row nr 3, indexing from 0 
+
+        5.
+        <RowDefinition Height = "100"/> then size 100 pixels
+        <RowDefinition Height = "*"/> then size takes the rest of the window
+        <RowDefinition Height = "Auto"/> then size takes the size of the heightest element in that row, e.g. 
+        if row nr 3 contains only Button with Height="50" then size of row nr 3 is equal to 50 pixels  -->
+        
+        <!-- Header -->
+        <!--Span the header across 2 columns, it fills 2 columns now and row 0 (first row): StackPanel Grid.ColumnSpan="2" -->
+        <StackPanel Grid.ColumnSpan="2" Background="AliceBlue" Orientation="Horizontal">
+            <Image Source="{StaticResource logo}" Width="40" Height="40" Margin="5"/>
+            <TextBlock Text="Students"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       Foreground="Black"
+                       VerticalAlignment="Bottom"
+                       Margin="15"/>
+            <TextBlock Text="Version 1.0" VerticalAlignment="Bottom" Margin="0 0 0 25"/>
+        </StackPanel>
+        <!-- Students list (with nested Grid so ListView can be scrolled)-->
+        <Grid Grid.Row="1" Background="Red">
+            <Grid.RowDefinitions>
+                <RowDefinition Height = "Auto"/>
+                <RowDefinition/> <!--Height default value = *-->
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal">
+                <Button Margin="10" Click="ButtonMoveNavigation_Click">
+                    <Image Source="{StaticResource forward}" Width="20" Height="20"/>
+                </Button>
+                <Button Margin="10" Click="ButtonAddCustomer_Click">
+                    <!--HorizontalAlignment ="Stretch" means that button stretches horizontally, all available width space -->
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{StaticResource addStudent}" Width="20" Height="20"/>
+                        <TextBlock Text="Add" FontWeight="Bold" Margin="5 0"/>
+                        <!--Margin LeftTopRightBottom, Margin="5 0" left&right to 5 and top*bottom to 0-->
+                    </StackPanel>
+                </Button>
+                <Button Margin="10" Click="ButtonDeleteCustomer_Click">
+                    <!--HorizontalAlignment ="Stretch" means that button stretches horizontally, all available width space -->
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{StaticResource deleteStudent}" Width="20" Height="20"/>
+                        <TextBlock Text="Delete" FontWeight="Bold" Margin="5 0"/>
+                        <!--Margin LeftTopRightBottom, Margin="5 0" left&right to 5 and top*bottom to 0-->
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <ListView Grid.Row="1">
+                <ListViewItem>Anna</ListViewItem>
+                <ListViewItem>Anna</ListViewItem>
+                <ListViewItem>Anna</ListViewItem>
+            </ListView>
+        </Grid>
+        <!-- Student detail -->
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock Text="First Name" Margin="10"/>
+            <TextBlock Text="Last Name" Margin="10"/>
+            <CheckBox Content="Is active" Margin="10"/>
+        </StackPanel>
+    </Grid>
+</Window>
