@@ -8,6 +8,7 @@
         d:DesignWidth ="600"
         d:DesignHeight ="400"
     Title="Students Manager">
+    <!--x:Class="WPF_StudentsManager.MainWindow" inherits from Window-->
     <Window.Resources>
         <!--Size of the Window-->
         <!--d:DesignWidth ="600"
@@ -77,12 +78,14 @@
                        Margin="15"/>
             <TextBlock Text="Version 1.0" VerticalAlignment="Bottom" Margin="0 0 0 25"/>
         </StackPanel>
-        <!-- Students list (with nested Grid so ListView can be scrolled)-->
+        <!-- Students list (with nested Grid so ListView can be scrolled) , x:Name="studentsListGrid" can be done by Name="studentsListGrid"
+        x:Name works on Framework attributes but Name works everywhere e.g. for RowDefinition; x stands for Xaml namespace (line 3 of this xaml file): 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml")-->
         <Grid Grid.Row="1"
               x:Name="studentsListGrid"
               Background="Red">
             <Grid.RowDefinitions>
-                <RowDefinition Height = "Auto"/>
+                <RowDefinition x:Name="rowDef" Height = "Auto"/>
                 <RowDefinition/> <!--Height default value = *-->
             </Grid.RowDefinitions>
 
