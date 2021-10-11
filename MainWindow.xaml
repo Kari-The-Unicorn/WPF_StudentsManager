@@ -85,7 +85,7 @@
               x:Name="studentsListGrid"
               Background="Red">
             <Grid.RowDefinitions>
-                <RowDefinition x:Name="rowDef" Height = "Auto"/>
+                <RowDefinition Height = "Auto"/>
                 <RowDefinition/> <!--Height default value = *-->
             </Grid.RowDefinitions>
 
