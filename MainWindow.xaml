@@ -111,8 +111,8 @@
                 </Button>
             </StackPanel>
             <ListView Grid.Row="1" x:Name="studentsListView" 
-                      DisplayMemberPath="FirstName">
-                <!--SelectionChanged="StudentListView_SelectionChanged">-->
+                      DisplayMemberPath="FirstName"
+                      SelectionChanged="StudentListView_SelectionChanged">
             </ListView>
         </Grid>
         <!-- Customer detail -->
@@ -121,9 +121,13 @@
                                     Customer="Thomas,Developer,true"/>-->
         <!-- Student detail -->
         <StackPanel Grid.Row="1" Grid.Column="1">
-            <TextBlock Text="First Name" Margin="10"/>
-            <TextBlock Text="Last Name" Margin="10"/>
-            <CheckBox Content="Is active" Margin="10"/>
+            <TextBox Text="First Name" Margin="10" x:Name="txtFirstName"
+                       TextChanged="TextBox_TextChanged"/>
+            <TextBox Text="Last Name" Margin="10" x:Name="txtLastName"
+                       TextChanged="TextBox_TextChanged"/>
+            <CheckBox Content="Is active" Margin="10" x:Name="chkIsActive"
+                      Checked="CheckBoxIsActive_Checked"
+                      Unchecked="CheckBoxIsActive_Checked"/>
         </StackPanel>
     </Grid>
 </Window>
