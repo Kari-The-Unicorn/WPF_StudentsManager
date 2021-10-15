@@ -110,12 +110,15 @@
                     </StackPanel>
                 </Button>
             </StackPanel>
-            <ListView Grid.Row="1">
-                <ListViewItem>Anna</ListViewItem>
-                <ListViewItem>Anna</ListViewItem>
-                <ListViewItem>Anna</ListViewItem>
+            <ListView Grid.Row="1" x:Name="studentsListView" 
+                      DisplayMemberPath="FirstName">
+                <!--SelectionChanged="StudentListView_SelectionChanged">-->
             </ListView>
         </Grid>
+        <!-- Customer detail -->
+        <!--<controls:CustomerDetailControl Grid.Row="1" Grid.Column="1"
+                                    x:Name="customerDetailControl"
+                                    Customer="Thomas,Developer,true"/>-->
         <!-- Student detail -->
         <StackPanel Grid.Row="1" Grid.Column="1">
             <TextBlock Text="First Name" Margin="10"/>
