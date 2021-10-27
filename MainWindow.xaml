@@ -23,6 +23,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:WPF_StudentsManager.Controls"
+        xmlns:model="clr-namespace:WPF_StudentsManager.Model"
         mc:Ignorable="d"
         d:DesignWidth ="600"
         d:DesignHeight ="400"
@@ -92,7 +93,7 @@
         <!--Span the header across 2 columns, it fills 2 columns now and row 0 (first row): StackPanel Grid.ColumnSpan="2" -->
         <StackPanel Grid.ColumnSpan="3" Background="AliceBlue" Orientation="Horizontal">
             <Image Source="{StaticResource logo}" Width="40" Height="40" Margin="5"/>
-            <TextBlock Text="Students"
+            <TextBlock Text="Students List"
                        FontSize="20"
                        FontWeight="Bold"
                        Foreground="Black"
@@ -105,7 +106,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml")-->
         <Grid Grid.Row="1"
               x:Name="studentsListGrid"
-              Background="Red">
+              Background="{StaticResource studentListBackgroundBrush}">
             <Grid.RowDefinitions>
                 <RowDefinition Height = "Auto"/>
                 <RowDefinition/>
@@ -138,6 +139,7 @@
                       SelectionChanged="StudentListView_SelectionChanged">
             </ListView>
         </Grid>
-        <controls:StudentDetailControl Grid.Row ="1" Grid.Column="1" x:Name="studentDetailControl"/>
+        <controls:StudentDetailControl Grid.Row ="1" Grid.Column="1"
+                                       x:Name="studentDetailControl"/>
     </Grid>
 </Window>

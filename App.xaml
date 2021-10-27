@@ -4,6 +4,15 @@
              xmlns:local="clr-namespace:WPF_StudentsManager"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <!--<SolidColorBrush x:Key="studenListBackgroundBrush" Color="Red"/>-->
+        <!--Can be used anywhere in the app e.g. in MainWindow:-->
+        <!--<Grid Grid.Row="1"
+              x:Name="studentsListGrid"
+              Background="{StaticResource studenListBackgroundBrush}">-->
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Brushes.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
