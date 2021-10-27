@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using WPF_StudentsManager.Base;
+using WPF_StudentsManager.Model;
 
 namespace WPF_StudentsManager.DataProvider
 {

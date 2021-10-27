@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using WPF_StudentsManager.DataProvider;
 using WPF_StudentsManager.Base;
+using WPF_StudentsManager.Model;
 
 namespace WPF_StudentsManager
 {
@@ -81,31 +82,7 @@ namespace WPF_StudentsManager
         {
             // Display selected student in stack panel with txtFirstName, txtLastName and chkIsActive
             var student = studentsListView.SelectedItem as Student;
-            txtFirstName.Text = student?.FirstName ?? string.Empty; //student? if not null
-            txtLastName.Text = student?.LastName ?? string.Empty;
-            chkIsActive.IsChecked = student?.IsActive;
-            //customerDetailControl.Customer = student;
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            UpdateStudent();
-        }
-
-        private void CheckBoxIsActive_Checked(object sender, RoutedEventArgs e)
-        {
-            UpdateStudent();
-        }
-        private void UpdateStudent()
-        {
-            var student = studentsListView.SelectedItem as Student;
-            if (student != null) //if student is selected
-            {
-                student.FirstName = txtFirstName.Text;
-                student.LastName = txtLastName.Text;
-                student.IsActive = chkIsActive.IsChecked.GetValueOrDefault(); //IsChecked property of chkIsActive is nullable bool (bool?)
-                                                                              //so GetValueOrDefault() to default is false
-            }
+            studentDetailControl.Student = student;
         }
     }
 }

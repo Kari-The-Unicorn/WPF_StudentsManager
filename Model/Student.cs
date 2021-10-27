@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static WPF_StudentsManager.Base.Student;
+﻿using WPF_StudentsManager.Base;
 
-namespace WPF_StudentsManager.Base
+namespace WPF_StudentsManager.Model
 {
     public class Student : Observable // INotifyPropertyChanged Notify about property changes
                                       // (e.g when user changes input in txtFirstName, it updates content in list view)

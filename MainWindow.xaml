@@ -3,6 +3,13 @@
     e.g. if we add prefix "tutorial" to xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" => 
     xmlns:tutorial="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     then all elements from this ns need to have prefix e.g.tutorial:Window, tutorial:Grid
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x namespace contains features for XAML language
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" designer namespace e.g. XAML Ui designer for Visual Studio
+    Those width and height are when user doesn't resize window, when resizes it then width and height because of this (ignored by XAML processor 
+    at runtime) mc:Ignorable="d"
+    more can be added by using space e.g. mc:Ignorable="d dd"
+        d:DesignWidth ="600"
+        d:DesignHeight ="400"
     -->
 <!--Adding namespace:
     xmlns:model="clr-namespace:WPF_StudentsManager.Model"
@@ -15,6 +22,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:WPF_StudentsManager.Controls"
         mc:Ignorable="d"
         d:DesignWidth ="600"
         d:DesignHeight ="400"
@@ -130,15 +138,6 @@
                       SelectionChanged="StudentListView_SelectionChanged">
             </ListView>
         </Grid>
-        <!-- Student detail -->
-        <StackPanel Grid.Row="1" Grid.Column="1">
-            <TextBox Text="First Name" Margin="10" x:Name="txtFirstName"
-                       TextChanged="TextBox_TextChanged"/>
-            <TextBox Text="Last Name" Margin="10" x:Name="txtLastName"
-                       TextChanged="TextBox_TextChanged"/>
-            <CheckBox Content="Is active" Margin="10" x:Name="chkIsActive"
-                      Checked="CheckBoxIsActive_Checked"
-                      Unchecked="CheckBoxIsActive_Checked"/>
-        </StackPanel>
+        <controls:StudentDetailControl Grid.Row ="1" Grid.Column="1" x:Name="studentDetailControl"/>
     </Grid>
 </Window>
