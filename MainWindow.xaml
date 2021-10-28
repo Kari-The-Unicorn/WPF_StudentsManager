@@ -134,15 +134,28 @@
                     </StackPanel>
                 </Button>
             </StackPanel>
+            <!--DisplayMemberPath="FirstName" if you want to display one value, if more than DataTemplate-->
             <ListView Grid.Row="1" 
                       ItemsSource="{Binding Path=Students, Mode=OneWay}"
-                      x:Name="studentsListView" 
-                      DisplayMemberPath="FirstName">
+                      SelectedItem="{Binding Path=SelectedStudent, Mode=TwoWay}"
+                      x:Name="studentsListView" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=FirstName,Mode=OneWay}" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding Path=LastName,Mode=OneWay}"
+                                       Margin="5 0 0 0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </Grid>
         <controls:StudentDetailControl Grid.Row ="1" Grid.Column="1"
-                                       Student="{Binding ElementName=studentsListView, Path=SelectedItem, Mode=OneWay}"/>
+                                       Student="{Binding Path=SelectedStudent, Mode=OneWay}"/>
         <!--Mode=OneWay one way from source property to target property
-        if SelectedItem property of studentsListView change then taget property - Student is updated with that value -->
+        if SelectedItem property of studentsListView change then taget property - Student is updated with that value 
+        <controls:StudentDetailControl Grid.Row ="1" Grid.Column="1"
+                                       Student="{Binding ElementName=studentsListView, Path=SelectedItem, Mode=OneWay}"/>
+        -->
     </Grid>
 </Window>

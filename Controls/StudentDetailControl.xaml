@@ -7,13 +7,30 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              x:Name="root">
+    <UserControl.Resources>
+        <!--moved to Styles in Resources-->
+        <!--<Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Style.Setters>
+                <Setter Property="Margin" Value="10"/>
+            </Style.Setters>
+        </Style>-->
+        <Style x:Key="customTextBoxStyle" TargetType="TextBox"
+               BasedOn="{StaticResource textBoxStyle}">
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+    </UserControl.Resources>
     <!-- Student detail -->
     <StackPanel>
         <!--<TextBox Margin="10" Text="{Binding ElementName=root, Path=Student.FirstName, Mode=TwoWay}"/>
         data binding will update first name property when text box loses its focus, when you want it to updated every time user changes value
-        then add UpdateSourceTrigger=PropertyChanged -->
-        <TextBox Margin="10" Text="{Binding ElementName=root, Path=Student.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBox Margin="10" Text="{Binding ElementName=root, Path=Student.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        then add UpdateSourceTrigger=PropertyChanged 
+        If you don't want use style then set Style to x:Null
+        <TextBox Style="{x:Null}" />
+        -->
+        <TextBox Style="{StaticResource customTextBoxStyle}" 
+                 Text="{Binding ElementName=root, Path=Student.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Style="{StaticResource textBoxStyle}"
+                 Text="{Binding ElementName=root, Path=Student.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <CheckBox Content="Is active" Margin="10" 
                   IsChecked="{Binding ElementName=root, Path=Student.IsActive, Mode=TwoWay}"/>
     </StackPanel>

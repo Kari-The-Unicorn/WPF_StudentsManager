@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--with x:Key="textBoxStyle" it's explicit style, without - implicit, 
+    with implicit remove:
+    Style="{StaticResource customTextBoxStyle}"
+    from:
+    <TextBox Style="{StaticResource customTextBoxStyle}" 
+                 Text="{Binding ElementName=root, Path=Student.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+    -->
+    <Style x:Key="textBoxStyle" TargetType="TextBox">
+        <Style.Setters>
+            <Setter Property="Margin" Value="10"/>
+        </Style.Setters>
+    </Style>
+</ResourceDictionary>
