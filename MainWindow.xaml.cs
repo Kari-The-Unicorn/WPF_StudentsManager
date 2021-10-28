@@ -1,10 +1,9 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using WPF_StudentsManager.DataProvider;
-using WPF_StudentsManager.Base;
 using WPF_StudentsManager.Model;
+using WPF_StudentsManager.ViewModel;
 
 namespace WPF_StudentsManager
 {
@@ -13,30 +12,29 @@ namespace WPF_StudentsManager
     /// </summary>
     public partial class MainWindow : Window
     {
-        private StudentsDataProvider _studentsDataProvider;
+        public MainViewModel ViewModel { get; }
+
         public MainWindow()
         {
             InitializeComponent();
+            // Now any binding in xaml file can bind to the view model that is in data context
+            ViewModel = new MainViewModel(new StudentsDataProvider());
+            DataContext = ViewModel;
             // Event to load data
-            this.Loaded += MainPage_Loaded;
-            this.Closing += MainWindow_Closing; // state the customers when application is closed
-            _studentsDataProvider = new StudentsDataProvider();
+            Loaded += MainPage_Loaded;
+            Closing += MainWindow_Closing; // state the customers when application is closed
         }
 
-        // Fills list view with students
+        // Fills list view with students from view model
         private async void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            studentsListView.Items.Clear();
-            var students = await _studentsDataProvider.LoadStudentsAsync();
-            foreach (var student in students)
-            {
-                studentsListView.Items.Add(student);
-            }
+            await ViewModel.LoadAsync();
         }
 
-        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private async void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            _studentsDataProvider.SaveStudentsAsync(studentsListView.Items.OfType<Student>()).Wait();
+            //_studentsDataProvider.SaveStudentsAsync(studentsListView.Items.OfType<Student>()).Wait();
+            await ViewModel.SaveAsync();
         }
 
         private void ButtonAddCustomer_Click(object sender, RoutedEventArgs e)
@@ -76,13 +74,6 @@ namespace WPF_StudentsManager
             arrowMoveIcon.Source = newColumn == 0 ?
                 (System.Windows.Media.ImageSource)this.Resources["forward"] :
                 (System.Windows.Media.ImageSource)this.Resources["left"];
-        }
-
-        private void StudentListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            // Display selected student in stack panel with txtFirstName, txtLastName and chkIsActive
-            var student = studentsListView.SelectedItem as Student;
-            studentDetailControl.Student = student;
         }
     }
 }

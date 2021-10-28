@@ -59,6 +59,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataProvider\IStudentsDataProvider.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
     <Page Include="Controls\StudentDetailControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -134,12 +134,15 @@
                     </StackPanel>
                 </Button>
             </StackPanel>
-            <ListView Grid.Row="1" x:Name="studentsListView" 
-                      DisplayMemberPath="FirstName"
-                      SelectionChanged="StudentListView_SelectionChanged">
+            <ListView Grid.Row="1" 
+                      ItemsSource="{Binding Path=Students, Mode=OneWay}"
+                      x:Name="studentsListView" 
+                      DisplayMemberPath="FirstName">
             </ListView>
         </Grid>
         <controls:StudentDetailControl Grid.Row ="1" Grid.Column="1"
-                                       x:Name="studentDetailControl"/>
+                                       Student="{Binding ElementName=studentsListView, Path=SelectedItem, Mode=OneWay}"/>
+        <!--Mode=OneWay one way from source property to target property
+        if SelectedItem property of studentsListView change then taget property - Student is updated with that value -->
     </Grid>
 </Window>

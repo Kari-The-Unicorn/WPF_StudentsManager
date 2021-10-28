@@ -6,13 +6,14 @@ using WPF_StudentsManager.Model;
 
 namespace WPF_StudentsManager.DataProvider
 {
-    public class StudentsDataProvider
-    { // Here it access Json file but it can also access database or rest service
-        private static readonly string _customersFileName = "customers.json";
+    public class StudentsDataProvider : IStudentsDataProvider
+    {
+        // Here it access Json file but it can also access database or rest service
+        private static readonly string _studentsFileName = "students.json";
         public Task<IEnumerable<Student>> LoadStudentsAsync()
         {
             IEnumerable<Student> customerList;
-            if (!File.Exists(_customersFileName))
+            if (!File.Exists(_studentsFileName))
             {
                 customerList = new List<Student>
                 {
@@ -28,18 +29,18 @@ namespace WPF_StudentsManager.DataProvider
             else
             {
                 // Json from local file is read and list of students is deserialized from file
-                var json = File.ReadAllText(_customersFileName);
+                var json = File.ReadAllText(_studentsFileName);
                 customerList = JsonConvert.DeserializeObject<List<Student>>(json);
             }
             // return customerList
             return Task.FromResult(customerList);
         }
 
-        public Task SaveStudentsAsync(IEnumerable<Student> customers)
+        public Task SaveStudentsAsync(IEnumerable<Student> students)
         {
             // customers is serialized as json string and is written to the local file
-            var json = JsonConvert.SerializeObject(customers, Formatting.Indented);
-            File.WriteAllText(_customersFileName, json);
+            var json = JsonConvert.SerializeObject(students, Formatting.Indented);
+            File.WriteAllText(_studentsFileName, json);
             return Task.CompletedTask;
         }
     }
