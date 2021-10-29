@@ -10,8 +10,7 @@
     more can be added by using space e.g. mc:Ignorable="d dd"
         d:DesignWidth ="600"
         d:DesignHeight ="400"
-    -->
-<!--Adding namespace:
+    Adding namespace:
     xmlns:model="clr-namespace:WPF_StudentsManager.Model"
     if namespace is in another assembly then assemlby is also included e.g.
     xmlns:model="clr-namespace:WPF_StudentsManager.Model;
@@ -27,14 +26,11 @@
         mc:Ignorable="d"
         d:DesignWidth ="600"
         d:DesignHeight ="400"
+            FontSize="16"
     Title="Students Manager">
     <!--x:Class="WPF_StudentsManager.MainWindow" inherits from Window-->
     <Window.Resources>
-        <!--Size of the Window-->
-        <!--d:DesignWidth ="600"
-        d:DesignHeight ="600"
-        Other way: Title="MainWindow" Height="10" Width="100"-->
-        
+        <!--Size of the Window other way: Title="MainWindow" Height="10" Width="100"-->
         <!--Add icon to Images folder (new folder) in solution, then define it here with path source, then use it for image source 
         (be sure that Images and it's content in included in the project, if not then rgt click and "Include In Project") e.g. 
         Image Source="{StaticResource addIcon}"
@@ -52,43 +48,16 @@
                  UriSource="pack://application:,,,/Images/delete-user.png"/>
     </Window.Resources>
     <!--Grid comes from System.Windows.Controls.Grid - instance of Grid class from System.Windows.Controls
-        There are also: System.Windows.Controls.Data,System.Windows.Controls.Documents,...Input, ...Media,...Shapes 
-        -->
+        There are also: System.Windows.Controls.Data,System.Windows.Controls.Documents,...Input, ...Media,...Shapes -->
     <Grid>
         <Grid.ColumnDefinitions>
-            <!--2 columns-->
             <ColumnDefinition Width = "Auto"/>
-            <ColumnDefinition/>
             <ColumnDefinition Width = "Auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <!--2 rows-->
             <RowDefinition Height = "Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <!-- Defining row/ column size (* - it will grow or shrink when the grid is resized):
-        1.
-        <RowDefinition Height = "3*"/> then size is 75% - 3x more than row nr 2
-        <RowDefinition Height = "*"/> then size is 25% - takes the rest of window = 25%
-        2.
-        <RowDefinition Height = "*"/> then size is 50% - the same as row nr 2
-        <RowDefinition Height = "*"/> then size is 50% 
-        3.
-        <RowDefinition Height = "100"/> then size 100 pixels
-        <RowDefinition Height = "*"/> then size takes the rest of the window 
-        4.
-        <RowDefinition Height = "100"/> then size 100 pixels
-        <RowDefinition Height = "*"/> then size takes the rest of the window/2 (rows nr 2 and 3 are equal)
-        <RowDefinition Height = "*"/> then size takes the rest of the window/2
-        
-        Element with Grid.Row = "2" is placed in row nr 3, indexing from 0 
-
-        5.
-        <RowDefinition Height = "100"/> then size 100 pixels
-        <RowDefinition Height = "*"/> then size takes the rest of the window
-        <RowDefinition Height = "Auto"/> then size takes the size of the heightest element in that row, e.g. 
-        if row nr 3 contains only Button with Height="50" then size of row nr 3 is equal to 50 pixels  -->
-        
         <!-- Header -->
         <!--Span the header across 2 columns, it fills 2 columns now and row 0 (first row): StackPanel Grid.ColumnSpan="2" -->
         <StackPanel Grid.ColumnSpan="3" Background="AliceBlue" Orientation="Horizontal">
@@ -155,7 +124,6 @@
         <!--Mode=OneWay one way from source property to target property
         if SelectedItem property of studentsListView change then taget property - Student is updated with that value 
         <controls:StudentDetailControl Grid.Row ="1" Grid.Column="1"
-                                       Student="{Binding ElementName=studentsListView, Path=SelectedItem, Mode=OneWay}"/>
-        -->
+                                       Student="{Binding ElementName=studentsListView, Path=SelectedItem, Mode=OneWay}"/> -->
     </Grid>
 </Window>

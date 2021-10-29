@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using WPF_StudentsManager.DataProvider;
 using WPF_StudentsManager.Model;
@@ -72,8 +71,8 @@ namespace WPF_StudentsManager
             Grid.SetColumn(studentsListGrid, newColumn);
             // change arrow icon when clicked to left and back to forward when clicked again (column grid = 0 then forward, column grid = 2 then left)
             arrowMoveIcon.Source = newColumn == 0 ?
-                (System.Windows.Media.ImageSource)this.Resources["forward"] :
-                (System.Windows.Media.ImageSource)this.Resources["left"];
+                (System.Windows.Media.ImageSource)Resources["forward"] :
+                (System.Windows.Media.ImageSource)Resources["left"];
         }
     }
 }
