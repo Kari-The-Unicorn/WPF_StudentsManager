@@ -26,7 +26,6 @@
         mc:Ignorable="d"
         d:DesignWidth ="600"
         d:DesignHeight ="400"
-            FontSize="16"
     Title="Students Manager">
     <!--x:Class="WPF_StudentsManager.MainWindow" inherits from Window-->
     <Window.Resources>
@@ -52,7 +51,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width = "Auto"/>
-            <ColumnDefinition Width = "Auto"/>
+            <ColumnDefinition Width = "*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height = "Auto"/>
@@ -70,6 +69,7 @@
                        Margin="15"/>
             <TextBlock Text="Version 1.0" VerticalAlignment="Bottom" Margin="0 0 0 25"/>
         </StackPanel>
+        <!--Navigation-->
         <!-- Students list (with nested Grid so ListView can be scrolled) , x:Name="studentsListGrid" can be done by Name="studentsListGrid"
         x:Name works on Framework attributes but Name works everywhere e.g. for RowDefinition; x stands for Xaml namespace (line 3 of this xaml file): 
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml")-->
@@ -119,6 +119,7 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
+        <!--Main area-->
         <controls:StudentDetailControl Grid.Row ="1" Grid.Column="1"
                                        Student="{Binding Path=SelectedStudent, Mode=OneWay}"/>
         <!--Mode=OneWay one way from source property to target property
